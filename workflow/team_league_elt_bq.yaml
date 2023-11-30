@@ -1,0 +1,14 @@
+main:
+  steps:
+    - runQuery:
+        call: googleapis.bigquery.v2.jobs.query
+        args:
+          projectId: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+          body:
+            useLegacySql: false
+            query: SELECT context
+              FROM `emea-c1-dwh-dev.dwh.contact_beautyprofile`
+              WHERE DATE(dwhUpdateDate) = "2022-08-17"
+        result: queryResult
+    - returnResult:
+        return: ${queryResult}

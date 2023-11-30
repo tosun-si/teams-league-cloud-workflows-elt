@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+pytest = "==6.1.2"
+
+[packages]
+apache-airflow = { version = "==2.5.1", extras = ["gcp"] }
+
+[requires]
+python_version = "3.8"

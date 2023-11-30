@@ -1,0 +1,44 @@
+[
+  {
+    "name": "teamScore",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "teamName",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "scorers",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "games",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "goalAssists",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "goals",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "scorerLastName",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "scorerFirstName",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  }
+]

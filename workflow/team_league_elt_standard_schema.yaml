@@ -1,0 +1,52 @@
+- declare:
+    assign:
+      - resultsList: [ ]
+
+- loadTeamStatsRawToBq:
+    call: googleapis.bigquery.v2.jobs.insert
+    args:
+      projectId: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+      body:
+        configuration:
+          load:
+            destinationTable:
+              datasetId: "mazlum_test"
+              projectId: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+              tableId: "team_stat_raw"
+            schema:
+              fields:
+                - name: "teamScore"
+                  type: "INTEGER"
+                  mode: "NULLABLE"
+                - name: "teamName"
+                  type: "STRING"
+                  mode: "NULLABLE"
+                - name: "scorers"
+                  type: "RECORD"
+                  mode: "REPEATED"
+                  fields:
+                    - name: "games"
+                      type: "INTEGER"
+                      mode: "NULLABLE"
+                    - name: "goalAssists"
+                      type: "INTEGER"
+                      mode: "NULLABLE"
+                    - name: "goals"
+                      type: "INTEGER"
+                      mode: "NULLABLE"
+                    - name: "scorerLastName"
+                      type: "STRING"
+                      mode: "NULLABLE"
+                    - name: "scorerFirstName"
+                      type: "STRING"
+                      mode: "NULLABLE"
+            sourceFormat: "NEWLINE_DELIMITED_JSON"
+            sourceUris: "gs://mazlum_dev/workflows/team_league/elt/*.json"
+            createDisposition: "CREATE_NEVER"
+            writeDisposition: "WRITE_APPEND"
+    result: loadTeamStatsRawToBqResult
+- appendTeamStatsRawResult:
+    assign:
+      - resultsList: '${list.concat(resultsList, loadTeamStatsRawToBqResult.status.state + " for " + loadTeamStatsRawToBqResult.configuration.load.destinationTable.tableId)}'
+- returnOutput:
+    return: ${resultsList}

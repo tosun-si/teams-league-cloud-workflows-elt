@@ -1,0 +1,12 @@
+{
+  "team_league_elt": {
+    "feature_name": "team_league_elt",
+    "team_stats_raw_write_disposition": "WRITE_APPEND",
+    "team_stats_raw_create_disposition": "CREATE_NEVER",
+    "dataset": "mazlum_test",
+    "team_stat_input_bucket": "mazlum_dev",
+    "team_stat_source_object": "airflow/team_league/elt/*.json",
+    "team_stat_table": "team_stat",
+    "team_stat_raw_table": "team_stat_raw"
+  }
+}

@@ -1,0 +1,25 @@
+- init:
+    assign:
+      - project_id: ${sys.get_env("GOOGLE_CLOUD_PROJECT_ID")}
+      - location_id: "global"
+- list:
+    call: googleapis.storage.v1.objects.list
+    args:
+      bucket: "mazlum_dev"
+      matchGlob: "workflows/team_league/elt/hot/*.json"
+    result: listResult
+- create_build:
+    call: googleapis.cloudbuild.v1.projects.builds.create
+    args:
+      projectId: ${project_id}
+      parent: ${"projects/" + project_id + "/locations/" + location_id}
+      body:
+        serviceAccount: ${sys.get_env("GOOGLE_CLOUD_SERVICE_ACCOUNT_NAME")}
+        options:
+          logging: CLOUD_LOGGING_ONLY
+        steps:
+          - name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+            script: gsutil cp gs://mazlum_dev/workflows/team_league/elt/hot/*.json gs://mazlum_dev/workflows/team_league/elt/cold/
+    result: resultBuildsCreate
+- returnResult:
+    return: ${resultBuildsCreate}
