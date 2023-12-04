@@ -1,4 +1,4 @@
-# teams-league-airflow-elt
+# teams-league-cloud-workflows-elt
 
 This project shows a real world use case with ELT pipeline using Cloud Storage, BigQuery, Airflow and Cloud Composer
 
