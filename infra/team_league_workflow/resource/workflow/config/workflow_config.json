@@ -1,0 +1,12 @@
+{
+  "workflow_name": "team_league_workflow_elt",
+  "team_stats_raw_bq_create_disposition": "CREATE_NEVER",
+  "team_stats_raw_bq_write_disposition": "WRITE_APPEND",
+  "team_stats_raw_bq_source_format": "NEWLINE_DELIMITED_JSON",
+  "team_stats_raw_bq_schema_uri": "gs://mazlum_dev/workflows/team_league/schema/team_stats_raw_table_schema.json",
+  "dataset": "mazlum_test",
+  "team_stat_table": "team_stat",
+  "team_stat_raw_table": "team_stat_raw",
+  "team_stats_raw_files_hot_source_uri": "gs://mazlum_dev/workflows/team_league/elt/hot/*.json",
+  "team_stats_raw_files_cold_destination_uri": "gs://mazlum_dev/workflows/team_league/elt/cold/"
+}

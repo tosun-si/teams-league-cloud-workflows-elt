@@ -1,0 +1,13 @@
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:455.0.0-slim
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        apt-get -yq install jq \
+        && ./scripts/run_workflow.sh
+    env:
+      - 'PROJECT_ID=$PROJECT_ID'
+      - 'LOCATION=$LOCATION'
+      - 'WORKFLOW_CONFIG_FILE_PATH=$_WORKFLOW_CONFIG_FILE_PATH'
+      - 'WORKFLOW_NAME=$_WORKFLOW_NAME'

@@ -1,0 +1,13 @@
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:455.0.0-slim
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        ./scripts/deploy_workflow.sh
+    env:
+      - 'PROJECT_ID=$PROJECT_ID'
+      - 'LOCATION=$LOCATION'
+      - 'WORKFLOW_NAME=$_WORKFLOW_NAME'
+      - 'WORKFLOW_SOURCE=$_WORKFLOW_SOURCE'
+      - 'WORKFLOW_SA=$_WORKFLOW_SA'

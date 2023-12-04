@@ -1,0 +1,17 @@
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:455.0.0-slim
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        apt-get -yq install jq \
+        && ./scripts/deploy_workflow_scheduler.sh
+    env:
+      - 'PROJECT_ID=$PROJECT_ID'
+      - 'LOCATION=$LOCATION'
+      - 'WORKFLOW_CONFIG_FILE_PATH=$_WORKFLOW_CONFIG_FILE_PATH'
+      - 'WORKFLOW_URI=$_WORKFLOW_URI'
+      - 'WORKFLOW_SCHEDULER_NAME=$_WORKFLOW_SCHEDULER_NAME'
+      - 'WORKFLOW_SCHEDULER_INTERVAL=$_WORKFLOW_SCHEDULER_INTERVAL'
+      - 'WORKFLOW_SCHEDULER_TIME_ZONE=$_WORKFLOW_SCHEDULER_TIME_ZONE'
+      - 'WORKFLOW_SCHEDULER_SA=$_WORKFLOW_SCHEDULER_SA'
