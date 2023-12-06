@@ -1,18 +1,6 @@
 # teams-league-cloud-workflows-elt
 
-This project shows a real world use case with ELT pipeline using Cloud Storage, BigQuery, Airflow and Cloud Composer
-
-The article on this topic :
-
-https://medium.com/@mazlum.tosun/elt-batch-pipeline-with-cloud-storage-bigquery-orchestrated-by-airflow-composer-8bbfc80bf171
-
-The video in English :
-
-https://youtu.be/XT-xdEtN0dA
-
-The video in French :
-
-https://youtu.be/gPJDj97rK-I
+This project shows a real world use case with ELT pipeline using Cloud Storage, BigQuery and Cloud Workflows
 
 ## Deployment and run with gcloud commands
 
@@ -97,3 +85,24 @@ gcloud builds submit \
 
 ## Deployment and run with Cloud Build and Terraform
 
+### Plan
+
+```shell
+gcloud builds submit \
+    --project=$PROJECT_ID \
+    --region=$LOCATION \
+    --config deploy-workflow-scheduler-terraform-plan.yaml \
+    --substitutions _TF_STATE_BUCKET=$TF_STATE_BUCKET,_TF_STATE_PREFIX=$TF_STATE_PREFIX,_WORKFLOW_NAME=$WORKFLOW_NAME,_WORKFLOW_SOURCE=$WORKFLOW_SOURCE,_WORKFLOW_URI=$WORKFLOW_URI,_WORKFLOW_SCHEDULER_SA=$WORKFLOW_SCHEDULER_SA,_WORKFLOW_SCHEDULER_NAME=$WORKFLOW_SCHEDULER_NAME,_WORKFLOW_SCHEDULER_INTERVAL=$WORKFLOW_SCHEDULER_INTERVAL,_WORKFLOW_SCHEDULER_TIME_ZONE=$WORKFLOW_SCHEDULER_TIME_ZONE,_WORKFLOW_SCHEDULER_SA=$WORKFLOW_SCHEDULER_SA,_GOOGLE_PROVIDER_VERSION=$GOOGLE_PROVIDER_VERSION \
+    --verbosity="debug" .
+```
+
+### Apply
+
+```shell
+gcloud builds submit \
+    --project=$PROJECT_ID \
+    --region=$LOCATION \
+    --config deploy-workflow-scheduler-terraform-apply.yaml \
+    --substitutions _TF_STATE_BUCKET=$TF_STATE_BUCKET,_TF_STATE_PREFIX=$TF_STATE_PREFIX,_WORKFLOW_NAME=$WORKFLOW_NAME,_WORKFLOW_SOURCE=$WORKFLOW_SOURCE,_WORKFLOW_URI=$WORKFLOW_URI,_WORKFLOW_SCHEDULER_SA=$WORKFLOW_SCHEDULER_SA,_WORKFLOW_SCHEDULER_NAME=$WORKFLOW_SCHEDULER_NAME,_WORKFLOW_SCHEDULER_INTERVAL=$WORKFLOW_SCHEDULER_INTERVAL,_WORKFLOW_SCHEDULER_TIME_ZONE=$WORKFLOW_SCHEDULER_TIME_ZONE,_WORKFLOW_SCHEDULER_SA=$WORKFLOW_SCHEDULER_SA,_GOOGLE_PROVIDER_VERSION=$GOOGLE_PROVIDER_VERSION \
+    --verbosity="debug" .
+```

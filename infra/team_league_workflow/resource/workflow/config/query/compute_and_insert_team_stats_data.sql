@@ -1,4 +1,4 @@
-INSERT INTO `{{project_id}}.{{dataset}}.{{team_stat_table}}`
+INSERT INTO `${project_id}.${dataset}.${team_stat_table}`
 (
     teamName,
     teamScore,
@@ -32,11 +32,11 @@ SELECT
         ORDER BY scorer.goalAssists DESC LIMIT 1
     )[OFFSET(0)] AS bestPasserStats,
     current_timestamp() as ingestionDate
-FROM `{{project_id}}.{{dataset}}.{{team_stat_raw_table}}` team_stats
-INNER JOIN `{{project_id}}.{{dataset}}.team_slogan` team_slogan ON team_stats.teamName = team_slogan.teamName,
+FROM `${project_id}.${dataset}.${team_stat_raw_table}` team_stats
+INNER JOIN `${project_id}.${dataset}.team_slogan` team_slogan ON team_stats.teamName = team_slogan.teamName,
 UNNEST(team_stats.scorers) AS scorer
 GROUP BY
     team_stats.teamName,
     team_stats.teamScore,
-    team_slogan.teamSlogan;
+    team_slogan.teamSlogan
 

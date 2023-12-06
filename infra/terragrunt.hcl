@@ -15,10 +15,13 @@ generate "versions" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 terraform {
-  required_version = ">= 0.13.2"
+  required_version = ">= 0.13"
 
   required_providers {
-    google   = "${get_env("GOOGLE_PROVIDER_VERSION")}"
+    google = {
+      source  = "hashicorp/google"
+      version = "= 5.8.0"
+    }
   }
 }
 EOF

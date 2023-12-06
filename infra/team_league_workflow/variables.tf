@@ -3,6 +3,11 @@ variable "project_id" {
   type        = string
 }
 
+variable "location" {
+  description = "Location."
+  type        = string
+}
+
 variable "workflow_name" {
   description = "Workflow name."
   type        = string
@@ -15,6 +20,11 @@ variable "workflow_source" {
 
 variable "workflow_uri" {
   description = "Workflow URI."
+  type        = string
+}
+
+variable "workflow_sa" {
+  description = "Workflow Service Account."
   type        = string
 }
 

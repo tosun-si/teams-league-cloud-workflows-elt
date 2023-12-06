@@ -1,12 +1,20 @@
 steps:
-  - name: alpine/terragrunt:1.3.6
+  - name: alpine/terragrunt:1.6.5
     script: |
       terragrunt run-all init
       terragrunt run-all plan --out tfplan.out
     dir: 'infra'
     env:
       - 'TF_VAR_project_id=$PROJECT_ID'
-      - 'TF_VAR_env=$_ENV'
+      - 'TF_VAR_location=$LOCATION'
       - 'TF_STATE_BUCKET=$_TF_STATE_BUCKET'
       - 'TF_STATE_PREFIX=$_TF_STATE_PREFIX'
+      - 'TF_VAR_workflow_name=$_WORKFLOW_NAME'
+      - 'TF_VAR_workflow_source=$_WORKFLOW_SOURCE'
+      - 'TF_VAR_workflow_uri=$_WORKFLOW_URI'
+      - 'TF_VAR_workflow_sa=$_WORKFLOW_SCHEDULER_SA'
+      - 'TF_VAR_workflow_scheduler_name=$_WORKFLOW_SCHEDULER_NAME'
+      - 'TF_VAR_workflow_scheduler_interval=$_WORKFLOW_SCHEDULER_INTERVAL'
+      - 'TF_VAR_workflow_scheduler_timezone=$_WORKFLOW_SCHEDULER_TIME_ZONE'
+      - 'TF_VAR_workflow_scheduler_sa=$_WORKFLOW_SCHEDULER_SA'
       - 'GOOGLE_PROVIDER_VERSION=$_GOOGLE_PROVIDER_VERSION'
