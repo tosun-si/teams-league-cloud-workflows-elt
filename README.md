@@ -2,6 +2,8 @@
 
 This project shows a real world use case with ELT pipeline using Cloud Storage, BigQuery and Cloud Workflows
 
+![elt_gcs_bq_workflows.png](diagram%2Felt_gcs_bq_workflows.png)
+
 ## Deployment and run with gcloud commands
 
 ### Deploy the Workflows
