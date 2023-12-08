@@ -4,6 +4,17 @@ This project shows a real world use case with ELT pipeline using Cloud Storage, 
 
 ![elt_gcs_bq_workflows.png](diagram%2Felt_gcs_bq_workflows.png)
 
+The video on this topic from my GCP YouTube channel, Feel free to subscribe :
+
+English :
+
+https://youtu.be/RilA7iDrGao
+
+
+French :
+
+https://youtu.be/33OmLbTiSsw
+
 ## Deployment and run with gcloud commands
 
 ### Deploy the Workflows
