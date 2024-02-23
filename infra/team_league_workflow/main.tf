@@ -8,7 +8,7 @@ data "template_file" "raw_to_domain_query_template" {
   }
 }
 
-resource "google_cloud_scheduler_job" "job" {
+resource "google_cloud_scheduler_job" "workflow_elt_scheduler" {
   project          = var.project_id
   region           = var.location
   name             = var.workflow_scheduler_name
@@ -34,7 +34,7 @@ resource "google_cloud_scheduler_job" "job" {
   }
 }
 
-resource "google_workflows_workflow" "example" {
+resource "google_workflows_workflow" "workflow_elt_team_league" {
   depends_on = [
     data.template_file.raw_to_domain_query_template
   ]
